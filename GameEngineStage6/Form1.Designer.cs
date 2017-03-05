@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(792, 570);
             this.Name = "Form1";
             this.Text = "Арена ИИ";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
         }
