@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace GameEngineStage6.Core
 {
-    class GameData
+    public class GameData
     {
         // Набор значений для определения текущего состояния игры
         public enum GameState

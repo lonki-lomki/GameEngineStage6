@@ -3,7 +3,7 @@
     /// <summary>
     /// Класс для ведения журнала событий
     /// </summary>
-    class Logger
+    public class Logger
     {
         /// <summary>
         /// Файл журнала
