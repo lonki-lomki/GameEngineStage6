@@ -6,7 +6,7 @@ namespace GameEngineStage6.Utils
     /// <summary>
     /// Менеджер ресурсов
     /// </summary>
-    class ResourceManager
+    public class ResourceManager
     {
         public static ResourceManager instance; // единственный экземпляр данного класса
 

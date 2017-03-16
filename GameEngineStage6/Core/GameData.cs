@@ -31,7 +31,35 @@ namespace GameEngineStage6.Core
 
         public ResourceManager rm;
 
+        private static GameData instance;
+
+        
         /////////////////////////////////////////////////////////
+
+
+        private GameData()
+        {
+        }
+
+        public static GameData Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GameData();
+                }
+                return instance;
+            }
+        }
+
+        /// <summary>
+        /// Загрузка уровня и инициализация всех переменных для выбранного этапа
+        /// </summary>
+        public void Init()
+        {
+        }
+
 
     }
 }

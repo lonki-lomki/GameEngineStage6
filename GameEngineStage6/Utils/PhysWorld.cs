@@ -29,7 +29,7 @@ namespace GameEngineStage6.Utils
             this.log = log;
         }
 
-        public void add(Entity e)
+        public void Add(Entity e)
         {
             objects.Add(e);
         }
@@ -38,7 +38,7 @@ namespace GameEngineStage6.Utils
         /// (КОСТЫЛЬ) Добавить объект во временный массив, для последующего слияния с основным массивом
         /// </summary>
         /// <param name="e"></param>
-        public void add2(Entity e)
+        public void Add2(Entity e)
         {
             tmp_objects.Add(e);
         }
@@ -46,12 +46,12 @@ namespace GameEngineStage6.Utils
         /// <summary>
         /// Обновление состояния объектов физического мира
         /// </summary>
-        public void update(int delta)
+        public void Update(int delta)
         {
             // Добавить объекты из временного массива в основной
             for (int i = tmp_objects.Count - 1; i >= 0; i--)
             {
-                add(tmp_objects[i]);
+                Add(tmp_objects[i]);
                 tmp_objects.RemoveAt(i);
             }
 
