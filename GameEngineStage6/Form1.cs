@@ -17,6 +17,8 @@ namespace GameEngineStage6
         // Для определения длины интервала времени в тиках
         private long saveTickCount = 0;
 
+        private string old_title;	// Оригинальный текст в заголовке окна
+
         /// <summary>
         /// Игровые данные
         /// </summary>
@@ -112,7 +114,7 @@ namespace GameEngineStage6
                 {
                     if (ent.isDestroyed() == false)
                     {
-                        gd.world.add(ent);
+                        gd.world.Add(ent);
                     }
                 }
                 // Сбросить флаг
@@ -120,7 +122,7 @@ namespace GameEngineStage6
             }
 
             // Обновить мир
-            gd.world.update(delta);
+            gd.world.Update(delta);
 
             // Обновить игровую сцену
             gd.curScene.Update(delta);

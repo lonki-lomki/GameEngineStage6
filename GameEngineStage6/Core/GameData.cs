@@ -33,8 +33,12 @@ namespace GameEngineStage6.Core
 
         private static GameData instance;
 
-        
+
         /////////////////////////////////////////////////////////
+
+        public Scene curScene = null;
+
+        public bool sceneChange = false;
 
 
         private GameData()

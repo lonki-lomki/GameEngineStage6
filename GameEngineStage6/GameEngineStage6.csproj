@@ -55,6 +55,7 @@
     <Compile Include="Core\CONFIG.cs" />
     <Compile Include="Core\Entity.cs" />
     <Compile Include="Core\GameData.cs" />
+    <Compile Include="Core\Scene.cs" />
     <Compile Include="Core\TileMap.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
