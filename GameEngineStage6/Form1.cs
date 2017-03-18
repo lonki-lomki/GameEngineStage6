@@ -1,9 +1,10 @@
 ﻿using GameEngineStage6.Core;
 using GameEngineStage6.Utils;
+using GameEngineStage6.Scenes;
 using System;
 using System.Windows.Forms;
 using System.Reflection;
-
+using System.Drawing;
 
 namespace GameEngineStage6
 {
@@ -23,6 +24,8 @@ namespace GameEngineStage6
         /// Игровые данные
         /// </summary>
         private GameData gd;
+
+        //Lua state;
 
 
         public Form1()
@@ -69,6 +72,19 @@ namespace GameEngineStage6
             // Создать физический мир
             gd.world = new PhysWorld(log);
 
+            old_title = this.Text;
+
+            // Создать стартовую сцену игры
+            GameScene gs = new GameScene(GameData.GameState.Level, gd);
+            //MainMenuScene scene = new MainMenuScene(GameData.GameState.MainMenu, gd);
+            gd.curScene = gs;
+
+            gd.curScene.Init();
+
+            gd.sceneChange = true;
+
+
+            //state = new Lua();
 
 
 
@@ -145,7 +161,116 @@ namespace GameEngineStage6
             Invalidate(false);
         }
 
+        ///////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Обработка нажатых клавиш
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">E.</param>
+        ///////////////////////////////////////////////////////////////////////
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Вызвать обработчик нажатий клавиш текущей сцены
+            gd.curScene.KeyDown(sender, e);
+        }
+
+        ///////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Обработка событий перерисовки содержимого окна
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">E.</param>
+        ///////////////////////////////////////////////////////////////////////
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
 
 
+            // Вывести фоновое изображение, если оно есть
+            if (gd.backgroundImage != null)
+            {
+                g.DrawImage(gd.backgroundImage, 0.0f, 0.0f);
+            }
+
+            /*
+                        if (gd.currentGameState == GameData.GameState.GameWin)
+                        {
+                            g.DrawString("WIN!", new Font("Arial", 30), Brushes.Green, 350.0f, 250.0f);
+                            //g.DrawString("Скорость по Y: " + gd.player.getVelocity().Y, new Font("Arial", 12), Brushes.Green, 300.0f, 300.0f);
+                            return;
+                        }
+
+                        if (gd.currentGameState == GameData.GameState.GameOver)
+                        {
+                            g.DrawString("GAME OVER!", new Font("Arial", 30), Brushes.Red, 270.0f, 250.0f);
+                            return;
+                        }
+            */
+
+            //var res = state.DoString("return _VERSION")[0];
+            //g.DrawString((String)res, new Font("Arial", 30), Brushes.Green, 350.0f, 250.0f);
+
+            // Цикл отображения всех объектов на всех уровнях
+            // TODO: перенести в отдельный метод класса World
+            // Цикл по уровням (пока 3 уровня)
+            for (int i = 0; i < 3; i++)
+            {
+                foreach (Entity ent in gd.world.objects)
+                {
+                    if (ent.getLayer() == i)
+                    {
+                        ent.render(g);
+                    }
+                }
+            }
+
+            //gd.astar.drawPath(g, gd.aStarPath);
+
+            // TODO: тестирование анимации
+            //////anim.render(g, 600, 100);
+
+            // Вывод текстовой информации
+            //g.DrawString("Тяга: " + gd.player.getEngPower(), new Font("Arial", 12), Brushes.Black, 20.0f, 10.0f);
+            //g.DrawString("Скорость по Х: " + gd.player.getVelocity().X, new Font("Arial", 12), Brushes.Black, 20.0f, 30.0f);
+            //g.DrawString("Скорость по Y: " + gd.player.getVelocity().Y, new Font("Arial", 12), Brushes.Black, 20.0f, 50.0f);
+
+            // Для отладки - вывести два точечных коллайдера
+            /*
+            PointF pos = gd.player.getPosition();
+            Vector v = gd.pc1.rotate(gd.player.getAngle()-90.0f);
+            g.DrawEllipse(Pens.Green, pos.X + 20 + v.X, pos.Y + 20 + v.Y, 2, 2);
+            v = gd.pc2.rotate(gd.player.getAngle()-90.0f);
+            g.DrawEllipse(Pens.Green, pos.X + 20 + v.X, pos.Y + 20 + v.Y, 2, 2);
+            */
+
+        }
+
+        ///////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Обработка событий нажатия клавиши мыши
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Параметры события</param>
+        ///////////////////////////////////////////////////////////////////////
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            // Левая кнопка
+            if (e.Button == MouseButtons.Left)
+            {
+                foreach (Entity ent in gd.world.objects)
+                {
+                    ent.OnLeftMouseButtonClick(e);
+                }
+            }
+
+            // Правая кнопка
+            if (e.Button == MouseButtons.Right)
+            {
+                foreach (Entity ent in gd.world.objects)
+                {
+                    ent.OnRightMouseButtonClick(e);
+                }
+            }
+        }
     }
 }

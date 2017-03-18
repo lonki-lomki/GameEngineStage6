@@ -1,5 +1,6 @@
 ﻿using GameEngineStage6.Utils;
 using System;
+using System.Drawing;
 using System.Reflection;
 
 namespace GameEngineStage6.Core
@@ -33,12 +34,16 @@ namespace GameEngineStage6.Core
 
         private static GameData instance;
 
+        public Image backgroundImage;
+
 
         /////////////////////////////////////////////////////////
 
         public Scene curScene = null;
 
         public bool sceneChange = false;
+
+        public Map map;
 
 
         private GameData()

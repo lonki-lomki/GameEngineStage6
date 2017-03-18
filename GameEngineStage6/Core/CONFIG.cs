@@ -3,7 +3,7 @@
     public class CONFIG
     {
         // Размер окна программы
-        public static readonly int WIND_WIDTH = 800;
+        public static readonly int WIND_WIDTH = 1024;
         public static readonly int WIND_HEIGHT = 600;
 
         // Координата начала игрового поля
