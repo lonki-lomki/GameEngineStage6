@@ -128,7 +128,7 @@ namespace GameEngineStage6
                 // Перенести "живые" объекты из текущей сцены в физический мир
                 foreach (Entity ent in gd.curScene.objects)
                 {
-                    if (ent.isDestroyed() == false)
+                    if (ent.IsDestroyed() == false)
                     {
                         gd.world.Add(ent);
                     }
@@ -149,7 +149,7 @@ namespace GameEngineStage6
             // Проверить актуальность объектов (убрать со сцены уничтоженные объекты)
             for (int i = gd.world.objects.Count - 1; i >= 0; i--)
             {
-                if (gd.world.objects[i].isDestroyed())
+                if (gd.world.objects[i].IsDestroyed())
                 {
                     // Удалить из "мира"
                     gd.world.objects.RemoveAt(i);
@@ -217,9 +217,9 @@ namespace GameEngineStage6
             {
                 foreach (Entity ent in gd.world.objects)
                 {
-                    if (ent.getLayer() == i)
+                    if (ent.GetLayer() == i)
                     {
-                        ent.render(g);
+                        ent.Render(g);
                     }
                 }
             }

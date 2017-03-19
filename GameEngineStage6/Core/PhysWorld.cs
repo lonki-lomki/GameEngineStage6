@@ -59,36 +59,36 @@ namespace GameEngineStage6.Utils
             foreach (Entity e in objects)
             {
                 // Сохранить предыдущее состояние объекта
-                e.saveState();
+                e.SaveState();
 
                 // Вычислить действующие силы: гравитацию и тягу двигателя
                 // Гравитация
-                float gravityForce = (e.hasGravity() == true) ? CONFIG.PHYS_GRAVITY : 0.0f;
+                float gravityForce = (e.HasGravity() == true) ? CONFIG.PHYS_GRAVITY : 0.0f;
                 // Тяга двигателя
-                float engineForce = (e.hasEngine() == true) ? e.getEngPower() : 0.0f;
+                float engineForce = (e.HasEngine() == true) ? e.GetEngPower() : 0.0f;
 
                 // Разложить тягу двигателя по направлениям, в зависимости от угла поворота
-                float angle2 = e.getAngle() * ((float)Math.PI / 180); // Перевод градусов в радианы
+                float angle2 = e.GetAngle() * ((float)Math.PI / 180); // Перевод градусов в радианы
                 float tmp_x = engineForce * (float)Math.Cos(angle2);
                 float tmp_y = engineForce * (float)Math.Sin(angle2);
 
                 // Рассчитать новые значения скоростей по Х и У с учетом тяги двигателя и гравитации
                 // ... использовать новую формулу (тяга двигателя вверх (-), гравитация вниз (+))
-                e.addVelocity(new PointF(tmp_x * delta / 1000.0f, (gravityForce - tmp_y) * (delta / 1000.0f)));
+                e.AddVelocity(new PointF(tmp_x * delta / 1000.0f, (gravityForce - tmp_y) * (delta / 1000.0f)));
 
                 // Обновить позицию объекта
-                e.update(delta);
+                e.Update(delta);
 
                 // Проверить коллизию
                 foreach (Entity e2 in objects)
                 {
                     if (e.GetHashCode() != e2.GetHashCode())
                     {
-                        if (e.hasCollision(e2) == true)
+                        if (e.HasCollision(e2) == true)
                         {
-                            e.setVelocity(0.0f, 0.0f);
-                            e2.setVelocity(0.0f, 0.0f);
-                            e.restoreState();
+                            e.SetVelocity(0.0f, 0.0f);
+                            e2.SetVelocity(0.0f, 0.0f);
+                            e.RestoreState();
                         }
                     }
                 }

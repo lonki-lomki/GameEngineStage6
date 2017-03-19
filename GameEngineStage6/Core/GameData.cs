@@ -1,5 +1,6 @@
 ﻿using GameEngineStage6.Utils;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Reflection;
 
@@ -45,6 +46,9 @@ namespace GameEngineStage6.Core
 
         public Map map;
 
+        public SpriteSheet ss;
+
+        public List<int> canMove = new List<int>(); // Массив проходимости тайлов - заносятся индексы проходимых тайлов
 
         private GameData()
         {

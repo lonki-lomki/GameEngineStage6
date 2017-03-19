@@ -131,14 +131,14 @@ namespace GameEngineStage6.Core
             this.gd = gd;
         }
 
-        public void setId(String value)
+        public void SetId(String value)
         {
-            this.id = value;
+            id = value;
         }
 
-        public String getId()
+        public String GetId()
         {
-            return this.id;
+            return id;
         }
 
         /// <summary>
@@ -146,18 +146,18 @@ namespace GameEngineStage6.Core
         /// </summary>
         /// <param name="x">Координата Х</param>
         /// <param name="y">Координата У</param>
-        virtual public void setPosition(float x, float y)
+        virtual public void SetPosition(float x, float y)
         {
             position.X = x;
             position.Y = y;
 
             //bbox.Location = position;
-            if (this.cldr != null)
+            if (cldr != null)
             {
                 // Так как объект прямоугольный, найти центр объекта не сложно
-                float center_x = x + this.size.Width / 2;
-                float center_y = y + this.size.Height / 2;
-                this.cldr.SetCenter(center_x, center_y);
+                float center_x = x + size.Width / 2;
+                float center_y = y + size.Height / 2;
+                cldr.SetCenter(center_x, center_y);
             }
         }
 
@@ -165,16 +165,16 @@ namespace GameEngineStage6.Core
         /// Установка нового положения объекта в пространстве окна
         /// </summary>
         /// <param name="p">Координаты</param>
-        virtual public void setPosition(PointF p)
+        virtual public void SetPosition(PointF p)
         {
-            setPosition(p.X, p.Y);
+            SetPosition(p.X, p.Y);
         }
 
         /// <summary>
         /// Получить текущее положение объекта в пространстве окна
         /// </summary>
         /// <returns>Координаты (объект PointF)</returns>
-        virtual public PointF getPosition()
+        virtual public PointF GetPosition()
         {
             return position;
         }
@@ -184,29 +184,29 @@ namespace GameEngineStage6.Core
         /// </summary>
         /// <param name="x">Новая тайловая координата Х.</param>
         /// <param name="y">Новая тайловая координата У.</param>
-        virtual public void setTilePosition(float x, float y)
+        virtual public void SetTilePosition(float x, float y)
         {
             tilePosition.X = x;
             tilePosition.Y = y;
 
             // Откорректировать пиксельную позицию
-            this.setPosition(CONFIG.START_X + x * CONFIG.TILE_SIZE, CONFIG.START_Y + y * CONFIG.TILE_SIZE);
+            SetPosition(CONFIG.START_X + x * CONFIG.TILE_SIZE, CONFIG.START_Y + y * CONFIG.TILE_SIZE);
         }
 
         /// <summary>
         /// Установить новое положение объекта в тайловых координатах
         /// </summary>
         /// <param name="p">Новые тайловые координаты</param>
-        virtual public void setTilePosition(PointF p)
+        virtual public void SetTilePosition(PointF p)
         {
-            setTilePosition(p.X, p.Y);
+            SetTilePosition(p.X, p.Y);
         }
 
         /// <summary>
         /// Получить текущее положение объекта в тайловых координатах
         /// </summary>
         /// <returns>Тайловые координаты объекта</returns>
-        virtual public PointF getTilePosition()
+        virtual public PointF GetTilePosition()
         {
             return tilePosition;
         }
@@ -216,7 +216,7 @@ namespace GameEngineStage6.Core
         /// </summary>
         /// <param name="width">Ширина</param>
         /// <param name="height">Высота</param>
-        virtual public void setSize(float width, float height)
+        virtual public void SetSize(float width, float height)
         {
             size.Width = width;
             size.Height = height;
@@ -227,18 +227,18 @@ namespace GameEngineStage6.Core
         /// Получить текущий размер объекта
         /// </summary>
         /// <returns>размер объекта</returns>
-        virtual public SizeF getSize()
+        virtual public SizeF GetSize()
         {
             return size;
         }
 
-        virtual public void setVelocity(float x, float y)
+        virtual public void SetVelocity(float x, float y)
         {
             velocity.X = x;
             velocity.Y = y;
         }
 
-        virtual public PointF getVelocity()
+        virtual public PointF GetVelocity()
         {
             return velocity;
         }
@@ -247,16 +247,16 @@ namespace GameEngineStage6.Core
         /// Установка полигона, по которому будет проверяться коллизия
         /// </summary>
         /// <param name="poly">полигон</param>
-        virtual public void setBbox2(Polygon poly)
+        virtual public void SetBbox2(Polygon poly)
         {
-            this.bbox2 = poly;
+            bbox2 = poly;
         }
 
         /// <summary>
         /// Изменить скорость объекта
         /// </summary>
         /// <param name="diff">добавка к скорости</param>
-        virtual public void addVelocity(PointF diff)
+        virtual public void AddVelocity(PointF diff)
         {
             velocity.X += diff.X;
             velocity.Y += diff.Y;
@@ -266,10 +266,10 @@ namespace GameEngineStage6.Core
         /// Инкрементально повернуть объект на указанный угол
         /// </summary>
         /// <param name="angle">угол поворота (в градусах)</param>
-        virtual public void addAngle(float angle)
+        virtual public void AddAngle(float angle)
         {
             // Повернуть объект
-            setAngle(this.angle + angle);
+            SetAngle(this.angle + angle);
 
         }
 
@@ -277,7 +277,7 @@ namespace GameEngineStage6.Core
         /// Установка нового угла поворота объекта (абсолютный угол)
         /// </summary>
         /// <param name="angle">абсолютный угол поворота объекта в градусах</param>
-        virtual public void setAngle(float angle)
+        virtual public void SetAngle(float angle)
         {
             // Нормализация угла поворота (то есть, вернуть угол в диапазон от -180 до 180)
             if (Math.Abs(angle) > 180)
@@ -308,9 +308,9 @@ namespace GameEngineStage6.Core
             //log.write("before:"+angle+" after:"+this.angle);
 
             // выполнить поворот коллайдера на тот же угол
-            if (this.cldr != null)
+            if (cldr != null)
             {
-                this.cldr.SetAngle(this.angle);
+                cldr.SetAngle(this.angle);
             }
 
         }
@@ -319,16 +319,16 @@ namespace GameEngineStage6.Core
         /// Получить текущий угол поворота объекта
         /// </summary>
         /// <returns>текущий угол поворота</returns>
-        virtual public float getAngle()
+        virtual public float GetAngle()
         {
-            return this.angle;
+            return angle;
         }
 
         /// <summary>
         /// Функция получения прямоугольника, описывающего положение и размер объекта
         /// </summary>
         /// <returns>прямоугольник, описывающий положение и размер объекта</returns>
-        virtual public RectangleF getBbox()
+        virtual public RectangleF GetBbox()
         {
             return bbox;
         }
@@ -338,9 +338,9 @@ namespace GameEngineStage6.Core
         /// </summary>
         /// <returns>объект-коллайдер или null</returns>
         //virtual public PolygonCollider getCollider()
-        virtual public Collider getCollider()
+        virtual public Collider GetCollider()
         {
-            return this.cldr;
+            return cldr;
         }
 
         /// <summary>
@@ -348,19 +348,19 @@ namespace GameEngineStage6.Core
         /// </summary>
         /// <param name="obj">объект для проверки коллизии</param>
         /// <returns>true - если есть факт коллизии, иначе false</returns>
-        virtual public bool hasCollision(Entity obj)
+        virtual public bool HasCollision(Entity obj)
         {
-            if (this.cldr == null)
+            if (cldr == null)
             {
                 return false;
             }
-            return this.cldr.HasCollision(obj.getCollider());
+            return cldr.HasCollision(obj.GetCollider());
         }
 
         /// <summary>
         /// Сохранить состояние объекта
         /// </summary>
-        virtual public void saveState()
+        virtual public void SaveState()
         {
             savedPos = position;
             savedAngle = angle;
@@ -371,7 +371,7 @@ namespace GameEngineStage6.Core
         /// <summary>
         /// Восстановить состояние объекта
         /// </summary>
-        virtual public void restoreState()
+        virtual public void RestoreState()
         {
             if (isSaved == true)
             {
@@ -386,7 +386,7 @@ namespace GameEngineStage6.Core
         /// Установить значение флага гравитации для объекта
         /// </summary>
         /// <param name="value">новое значение флага гравитации</param>
-        virtual public void setGravity(bool value)
+        virtual public void SetGravity(bool value)
         {
             isGravity = value;
         }
@@ -395,7 +395,7 @@ namespace GameEngineStage6.Core
         /// Получить состояние флага гравитации для объекта
         /// </summary>
         /// <returns>состояние флага гравитации</returns>
-        virtual public bool hasGravity()
+        virtual public bool HasGravity()
         {
             return isGravity;
         }
@@ -404,7 +404,7 @@ namespace GameEngineStage6.Core
         /// Имеет ли объект крылья и может ли он планировать
         /// </summary>
         /// <returns>true - если может</returns>
-        virtual public bool mayGlide()
+        virtual public bool MayGlide()
         {
             return isGlider;
         }
@@ -413,7 +413,7 @@ namespace GameEngineStage6.Core
         /// Имеет ли объект двигатель
         /// </summary>
         /// <returns>true, если есть двигатель</returns>
-        virtual public bool hasEngine()
+        virtual public bool HasEngine()
         {
             return isEngine;
         }
@@ -422,20 +422,20 @@ namespace GameEngineStage6.Core
         /// Установить признак наличия у объекта двигателя
         /// </summary>
         /// <param name="value">true - есть двигатель, false - нет двигателя</param>
-        virtual public void setEngine(bool value)
+        virtual public void SetEngine(bool value)
         {
-            this.isEngine = value;
+            isEngine = value;
         }
 
         /// <summary>
         /// Установить картинку для отрисовки объекта
         /// </summary>
         /// <param name="img">графический объект - картинка</param>
-        virtual public void setImage(Image img)
+        virtual public void SetImage(Image img)
         {
             this.img = img;
             // Размер объекта равен размеру картинки
-            setSize(img.Size.Width, img.Size.Height);
+            SetSize(img.Size.Width, img.Size.Height);
             //this.size = img.Size;
         }
 
@@ -443,86 +443,86 @@ namespace GameEngineStage6.Core
         /// Получить картинку, которую необходимо отрисовать
         /// </summary>
         /// <returns>картинка</returns>
-        virtual public Image getImage()
+        virtual public Image GetImage()
         {
             return img;
         }
 
         //virtual public void setCollider(PolygonCollider c)
-        virtual public void setCollider(Collider c)
+        virtual public void SetCollider(Collider c)
         {
-            this.cldr = c;
+            cldr = c;
         }
 
         /// <summary>
         /// Установить номер визуального уровня
         /// </summary>
         /// <param name="value">Новое значение визуального уровня</param>
-        virtual public void setLayer(int value)
+        virtual public void SetLayer(int value)
         {
-            this.layer = value;
+            layer = value;
         }
 
         /// <summary>
         /// Получить номер визуального уровня
         /// </summary>
         /// <returns>Текущий номер визуального уровня</returns>
-        virtual public int getLayer()
+        virtual public int GetLayer()
         {
-            return this.layer;
+            return layer;
         }
 
         /// <summary>
         /// Получить информацию, уничтожен объект или нет.
         /// </summary>
         /// <returns>true - объект уничтожен, иначе - объект действующий</returns>
-        virtual public bool isDestroyed()
+        virtual public bool IsDestroyed()
         {
-            return this.destroyed;
+            return destroyed;
         }
 
         /// <summary>
         /// Установить значение свойства, указывающего уничтожен объект или нет.
         /// </summary>
         /// <param name="value">true - объект надо уничтожить</param>
-        virtual public void setDestroyed(bool value)
+        virtual public void SetDestroyed(bool value)
         {
-            this.destroyed = value;
+            destroyed = value;
         }
 
         /// <summary>
         /// Получить текущее значение тяги двигателя
         /// </summary>
         /// <returns>текущая тяга двигателя</returns>
-        virtual public float getEngPower()
+        virtual public float GetEngPower()
         {
-            return this.engPower;
+            return engPower;
         }
 
         /// <summary>
         /// Установить значение можности двигателя
         /// </summary>
         /// <param name="value">новое значение тяги двигателя</param>
-        virtual public void setEngPower(float value)
+        virtual public void SetEngPower(float value)
         {
-            this.engPower = value;
+            engPower = value;
         }
 
         /// <summary>
         /// Добавить к тяге двигателя данное значение
         /// </summary>
         /// <param name="value">значение, которое будет добавлено к тяге</param>
-        virtual public void addEngPower(float value)
+        virtual public void AddEngPower(float value)
         {
-            this.engPower += value;
+            engPower += value;
             // Проверка граничных значений
-            if (this.engPower < 0.0f)
+            if (engPower < 0.0f)
             {
-                this.engPower = 0.0f;
+                engPower = 0.0f;
             }
-            if (this.engPower > CONFIG.MAX_ENG_POWER)
+            if (engPower > CONFIG.MAX_ENG_POWER)
             {
-                this.engPower = CONFIG.MAX_ENG_POWER;
+                engPower = CONFIG.MAX_ENG_POWER;
             }
         }
 
@@ -543,6 +543,7 @@ namespace GameEngineStage6.Core
         /// </summary>
         /// <param name="x">Изменение координаты Х</param>
         /// <param name="y">Изменение координаты У</param>
+        /*
         virtual public void TileMove(int x, int y, TileMap tm, PhysWorld world)
         {
             PointF pos = this.getTilePosition();
@@ -621,33 +622,34 @@ namespace GameEngineStage6.Core
                 }
             }
         }
+        */
 
         /// <summary>
         /// Вывод объекта на сцену
         /// </summary>
         /// <param name="g">графический контекст</param>
-        virtual public void render(Graphics g)
+        virtual public void Render(Graphics g)
         {
-            if (this.img != null)
+            if (img != null)
             {
                 // Проверить необходимость поворота изображения
-                if (this.angle != 0.0f)
+                if (angle != 0.0f)
                 {
                     // Поворот
-                    Bitmap returnBitmap = new Bitmap(this.img.Width, this.img.Height);
+                    Bitmap returnBitmap = new Bitmap(img.Width, img.Height);
                     using (Graphics graphics = Graphics.FromImage(returnBitmap))
                     {
-                        graphics.TranslateTransform((float)this.img.Width / 2, (float)this.img.Height / 2);
-                        graphics.RotateTransform(this.angle);
-                        graphics.TranslateTransform(-(float)this.img.Width / 2, -(float)this.img.Height / 2);
-                        graphics.DrawImage(this.img, 0.0f, 0.0f, this.img.Width, this.img.Height);
+                        graphics.TranslateTransform((float)img.Width / 2, (float)img.Height / 2);
+                        graphics.RotateTransform(angle);
+                        graphics.TranslateTransform(-(float)img.Width / 2, -(float)img.Height / 2);
+                        graphics.DrawImage(img, 0.0f, 0.0f, img.Width, img.Height);
                     }
-                    g.DrawImage(returnBitmap, this.getPosition().X, this.getPosition().Y, this.getSize().Width, this.getSize().Height);
+                    g.DrawImage(returnBitmap, GetPosition().X, GetPosition().Y, GetSize().Width, GetSize().Height);
                 }
                 else
                 {
                     // Вывод изображения на экран без поворота
-                    g.DrawImage(this.img, this.getPosition().X, this.getPosition().Y, this.getSize().Width, this.getSize().Height);
+                    g.DrawImage(img, GetPosition().X, GetPosition().Y, GetSize().Width, GetSize().Height);
                 }
             } // if image not null
 
@@ -662,13 +664,13 @@ namespace GameEngineStage6.Core
         /// Перемещение объекта в мире с учетом текущих скоростей
         /// </summary>
         /// <param name="delta"></param>
-        virtual public void update(int delta)
+        virtual public void Update(int delta)
         {
             //velocity.X = engPower;
             // delta - (в милисекундах) время, прошедшее после прошлого запуска функции
             //position.X += (velocity.X / 1000.0f) * delta;
             //position.Y += (velocity.Y / 1000.0f) * delta;
-            setPosition(position.X + (velocity.X / 1000.0f) * delta, position.Y + (velocity.Y / 1000.0f) * delta);
+            SetPosition(position.X + (velocity.X / 1000.0f) * delta, position.Y + (velocity.Y / 1000.0f) * delta);
 
         }
     }
