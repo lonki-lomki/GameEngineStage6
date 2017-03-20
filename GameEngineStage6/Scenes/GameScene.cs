@@ -1,7 +1,6 @@
 ﻿using GameEngineStage6.Core;
 using GameEngineStage6.Entities;
 using GameEngineStage6.Utils;
-using NLua;
 using System.Windows.Forms;
 
 namespace GameEngineStage6.Scenes
@@ -12,7 +11,8 @@ namespace GameEngineStage6.Scenes
     public class GameScene : Scene
     {
 
-        
+        // TODO: размер тайла можно увеличить до 64х64
+        // TODO: вывод на экран части карты. Скролл карты.
 
         public GameScene(GameData.GameState ID, GameData gd) : base(ID, gd)
         {
@@ -26,14 +26,8 @@ namespace GameEngineStage6.Scenes
         {
             base.Init();
 
-            !!!!!
-
             // Загрузить ресурсы, необходимые для данной сцены
             gd.rm.Clear();
-            gd.rm.AddElementAsImage("#", @"Resources\tile_wall.png");
-            gd.rm.AddElementAsImage(".", @"Resources\tile_space.png");
-            gd.rm.AddElementAsImage("*", @"Resources\tile_path.png");
-            gd.rm.AddElementAsImage("+", @"Resources\tile_busy.png");
 
             // Создать объект - тайловую карту и загрузить данные из файла
             gd.map = Map.Load(@"Resources\Level_001.tmx");

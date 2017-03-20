@@ -74,6 +74,9 @@ namespace GameEngineStage6
 
             old_title = this.Text;
 
+            // Инициализация менеджера ресурсов
+            gd.rm = ResourceManager.Instance;
+
             // Создать стартовую сцену игры
             GameScene gs = new GameScene(GameData.GameState.Level, gd);
             //MainMenuScene scene = new MainMenuScene(GameData.GameState.MainMenu, gd);
