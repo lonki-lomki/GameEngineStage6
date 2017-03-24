@@ -11,6 +11,9 @@ namespace GameEngineStage6
     public partial class Form1 : Form
     {
 
+        // TODO: создать два спрайта для ГГ (нижняя часть и верхняя часть)
+        // TODO: сдалать движение камеры по тайловой карте за ГГ (например, как в DeepsOfDespair)
+
         private Timer timer = new Timer();
 
         // Счётчик количества тиков
