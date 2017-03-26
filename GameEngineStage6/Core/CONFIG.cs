@@ -8,7 +8,7 @@
 
         // Координата начала игрового поля
         public static readonly int START_X = 20;
-        public static readonly int START_Y = 20;
+        public static readonly int START_Y = 30;
 
         public static readonly int VIEWPORT_WIDTH = 800;
         public static readonly int VIEWPORT_HEIGHT = 512;

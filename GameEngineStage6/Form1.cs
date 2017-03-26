@@ -5,6 +5,7 @@ using System;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Drawing;
+using NLua;
 
 namespace GameEngineStage6
 {
@@ -12,8 +13,6 @@ namespace GameEngineStage6
     {
 
         // TODO: создать два спрайта для ГГ (нижняя часть и верхняя часть)
-        // TODO: сдалать движение камеры по тайловой карте за ГГ (например, как в DeepsOfDespair)
-        // TODO: проверка движения карты (назначить на клавиши сдвиг камеры)
 
         private Timer timer = new Timer();
 
@@ -29,7 +28,8 @@ namespace GameEngineStage6
         /// </summary>
         private GameData gd;
 
-        //Lua state;
+        Lua state;
+        object luaVersion;
 
 
         public Form1()
@@ -90,9 +90,8 @@ namespace GameEngineStage6
 
             gd.sceneChange = true;
 
-
-            //state = new Lua();
-
+            state = new Lua();
+            luaVersion = state.DoString("return _VERSION")[0];
 
 
 
@@ -124,7 +123,7 @@ namespace GameEngineStage6
             float fps = 1000 / delta;
 
             // Вывести сообщение в заголовке окна
-            this.Text = old_title + " - " + fps + " FPS";
+            this.Text = old_title + " : " + fps + " FPS --- " + (string) luaVersion;
 
             // Проверить флаг смены сцены
             if (gd.sceneChange == true)

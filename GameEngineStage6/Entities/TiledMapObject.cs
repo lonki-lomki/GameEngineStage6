@@ -15,7 +15,7 @@ namespace GameEngineStage6.Entities
         /// <summary>
         /// Размеры камеры
         /// </summary>
-        private Rectangle viewPort = new Rectangle(16, 16, CONFIG.VIEWPORT_WIDTH, CONFIG.VIEWPORT_HEIGHT);
+        private Rectangle viewPort = new Rectangle(0, 0, CONFIG.VIEWPORT_WIDTH, CONFIG.VIEWPORT_HEIGHT);
 
         private Bitmap image;
 
@@ -124,6 +124,18 @@ namespace GameEngineStage6.Entities
             // Нарисовать границы области видимости игрового поля
             g.DrawRectangle(Pens.LightGreen, CONFIG.START_X, CONFIG.START_Y, viewPort.Width, viewPort.Height);
 
+        }
+
+        public Rectangle ViewPort
+        {
+            get
+            {
+                return viewPort;
+            }
+            set
+            {
+                viewPort = value;
+            }
         }
     }
 }

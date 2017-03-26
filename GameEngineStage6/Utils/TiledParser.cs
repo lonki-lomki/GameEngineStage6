@@ -597,7 +597,7 @@ namespace GameEngineStage6.Utils
                 //ProhibitDtd = false,
                 DtdProcessing = DtdProcessing.Parse
             };
-            using (var stream = System.IO.File.OpenText(filename))
+            using (var stream = File.OpenText(filename))
             using (var reader = XmlReader.Create(stream, settings))
                 while (reader.Read())
                 {

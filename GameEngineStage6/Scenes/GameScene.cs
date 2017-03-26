@@ -1,6 +1,7 @@
 ﻿using GameEngineStage6.Core;
 using GameEngineStage6.Entities;
 using GameEngineStage6.Utils;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace GameEngineStage6.Scenes
@@ -11,8 +12,7 @@ namespace GameEngineStage6.Scenes
     public class GameScene : Scene
     {
 
-        // TODO: размер тайла можно увеличить до 64х64
-        // TODO: вывод на экран части карты. Скролл карты.
+        TiledMapObject tmo;
 
         public GameScene(GameData.GameState ID, GameData gd) : base(ID, gd)
         {
@@ -66,7 +66,7 @@ namespace GameEngineStage6.Scenes
             }
 
             // Создать объект для отображения карты
-            TiledMapObject tmo = new TiledMapObject("TiledMapObject", gd, gd.map);
+            tmo = new TiledMapObject("TiledMapObject", gd, gd.map);
             // Координаты игрового поля на экране
             tmo.SetPosition(CONFIG.START_X, CONFIG.START_Y);
             // Другие параметры
@@ -84,6 +84,28 @@ namespace GameEngineStage6.Scenes
             if (e.KeyCode == Keys.Escape)
             {
                 Application.Exit();
+            }
+
+            // Временно: сдвиг камеры над игровым полем
+            if (e.KeyCode == Keys.W)
+            {
+                Rectangle rect = tmo.ViewPort;
+                tmo.ViewPort = new Rectangle(rect.X, rect.Y - 5, rect.Width, rect.Height);
+            }
+            if (e.KeyCode == Keys.S)
+            {
+                Rectangle rect = tmo.ViewPort;
+                tmo.ViewPort = new Rectangle(rect.X, rect.Y + 5, rect.Width, rect.Height);
+            }
+            if (e.KeyCode == Keys.A)
+            {
+                Rectangle rect = tmo.ViewPort;
+                tmo.ViewPort = new Rectangle(rect.X - 5, rect.Y, rect.Width, rect.Height);
+            }
+            if (e.KeyCode == Keys.D)
+            {
+                Rectangle rect = tmo.ViewPort;
+                tmo.ViewPort = new Rectangle(rect.X + 5, rect.Y, rect.Width, rect.Height);
             }
         }
 
