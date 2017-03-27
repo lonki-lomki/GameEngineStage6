@@ -14,7 +14,7 @@
         public static readonly int VIEWPORT_HEIGHT = 512;
 
         // Размер тайла
-        public static readonly int TILE_SIZE = 32;
+        public static readonly int TILE_SIZE = 48;
 
         public static readonly float PHYS_GRAVITY = 1.1f; //5.0f; // Гравитация для физ. движка
 
