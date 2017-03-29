@@ -74,6 +74,16 @@ namespace GameEngineStage6.Scenes
 
             // Добавить объект на сцену
             objects.Add(tmo);
+
+            // TODO: загрузить в менеджер ресурсов картинку ГГ
+
+            // Создать объект ГГ
+            gd.player = new Player("Player1", gd);
+            gd.player.SetPosition(120.0f, 120.0f);
+            gd.player.SetImage(gd.rm.GetImage("Player1"));
+            gd.player.SetLayer(2);
+            gd.player.SetGravity(false);
+            gd.player.SetEngine(false);
             
         }
 

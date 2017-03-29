@@ -50,6 +50,9 @@ namespace GameEngineStage6.Core
 
         public List<int> canMove = new List<int>(); // Массив проходимости тайлов - заносятся индексы проходимых тайлов
 
+        public Player player;
+
+
         private GameData()
         {
         }
