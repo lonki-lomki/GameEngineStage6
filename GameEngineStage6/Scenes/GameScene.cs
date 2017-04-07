@@ -75,9 +75,10 @@ namespace GameEngineStage6.Scenes
             // Добавить объект на сцену
             objects.Add(tmo);
 
-            // TODO: загрузить в менеджер ресурсов картинку ГГ
+            // Загрузить спрайт игрока
+            gd.rm.AddElementAsImage("Player1", @"Resources\player.png");
 
-            // Создать объект ГГ
+            // Создать объект ГГ           
             gd.player = new Player("Player1", gd);
             gd.player.SetPosition(120.0f, 120.0f);
             gd.player.SetImage(gd.rm.GetImage("Player1"));
@@ -85,6 +86,10 @@ namespace GameEngineStage6.Scenes
             gd.player.SetGravity(false);
             gd.player.SetEngine(false);
             
+            // Добавить игрока на сцену
+            objects.Add(gd.player);
+
+
         }
 
         public override void KeyDown(object sender, KeyEventArgs e)
