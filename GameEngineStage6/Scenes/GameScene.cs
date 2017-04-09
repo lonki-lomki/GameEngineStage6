@@ -101,6 +101,7 @@ namespace GameEngineStage6.Scenes
                 Application.Exit();
             }
 
+            /*
             // Временно: сдвиг камеры над игровым полем
             if (e.KeyCode == Keys.W)
             {
@@ -122,6 +123,14 @@ namespace GameEngineStage6.Scenes
                 Rectangle rect = tmo.ViewPort;
                 tmo.ViewPort = new Rectangle(rect.X + 5, rect.Y, rect.Width, rect.Height);
             }
+            */
+            /*
+            if (e.KeyCode == Keys.D)
+            {
+                PointF p = gd.player.GetPosition();
+                gd.player.SetPosition(p.X + 5, p.Y);
+            }
+            */
         }
 
         public override void Render()
@@ -132,6 +141,35 @@ namespace GameEngineStage6.Scenes
         public override void Update(int delta)
         {
             base.Update(delta);
+
+            // Проверка нажатых клавиш
+            if (gd.PressedKeys.Contains(Keys.Escape))
+            {
+                Application.Exit();
+            }
+
+            PointF velocity = new PointF(0.0f, 0.0f);
+
+            if(gd.PressedKeys.Contains(Keys.D))
+            {
+                velocity.X += 50.0f;
+            }
+            if (gd.PressedKeys.Contains(Keys.A))
+            {
+                velocity.X -= 50.0f;
+            }
+            if (gd.PressedKeys.Contains(Keys.S))
+            {
+                velocity.Y += 50.0f;
+            }
+            if (gd.PressedKeys.Contains(Keys.W))
+            {
+                velocity.Y -= 50.0f;
+            }
+
+            // Применить к игроку посчитанную скорость
+            gd.player.SetVelocity(velocity.X, velocity.Y);
+
         }
     }
 }

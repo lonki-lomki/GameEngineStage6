@@ -43,12 +43,14 @@ namespace GameEngineStage6.Core
 
         virtual public void KeyDown(object sender, KeyEventArgs e)
         {
-
+            // Добавить код клавиши в список нажатых клавиш
+            gd.PressedKeys.Add(e.KeyCode);
         }
 
         virtual public void KeyUp(object sender, KeyEventArgs e)
         {
-
+            // Удалить код клавиши из списка нажатых клавиш
+            gd.PressedKeys.Remove(e.KeyCode);
         }
 
         virtual public void MouseDown()

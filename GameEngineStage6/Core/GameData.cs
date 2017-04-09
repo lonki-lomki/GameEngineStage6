@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace GameEngineStage6.Core
 {
@@ -36,6 +37,8 @@ namespace GameEngineStage6.Core
         private static GameData instance;
 
         public Image backgroundImage;
+
+        public HashSet<Keys> PressedKeys = new HashSet<Keys>();
 
 
         /////////////////////////////////////////////////////////

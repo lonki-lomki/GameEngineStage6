@@ -182,6 +182,19 @@ namespace GameEngineStage6
 
         ///////////////////////////////////////////////////////////////////////
         /// <summary>
+        /// Обработка отпущенных клавиш
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">E.</param>
+        ///////////////////////////////////////////////////////////////////////
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            // Вызвать обработчик отпусканий клавиш текущей сцены
+            gd.curScene.KeyUp(sender, e);
+        }
+
+        ///////////////////////////////////////////////////////////////////////
+        /// <summary>
         /// Обработка событий перерисовки содержимого окна
         /// </summary>
         /// <param name="sender">Sender.</param>
@@ -278,5 +291,7 @@ namespace GameEngineStage6
                 }
             }
         }
+
+        
     }
 }
