@@ -170,6 +170,10 @@ namespace GameEngineStage6.Scenes
             // Применить к игроку посчитанную скорость
             gd.player.SetVelocity(velocity.X, velocity.Y);
 
+            // Сдвинуть камеру, чтобы ГГ был по центру экрана
+            Rectangle rect = tmo.ViewPort;
+            tmo.ViewPort = new Rectangle((int)gd.player.GetPosition().X - rect.Width / 2 - CONFIG.START_X, (int)gd.player.GetPosition().Y - rect.Height / 2 - CONFIG.START_Y, rect.Width, rect.Height);
+
         }
     }
 }
