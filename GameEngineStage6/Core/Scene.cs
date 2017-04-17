@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace GameEngineStage6.Core
@@ -31,7 +32,7 @@ namespace GameEngineStage6.Core
 
         }
 
-        virtual public void Render()
+        virtual public void Render(Graphics g)
         {
 
         }

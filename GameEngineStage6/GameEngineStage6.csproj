@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Camera.cs" />
     <Compile Include="Core\CONFIG.cs" />
     <Compile Include="Core\Entity.cs" />
     <Compile Include="Core\GameData.cs" />

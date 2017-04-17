@@ -26,6 +26,8 @@ namespace GameEngineStage6.Scenes
         {
             base.Init();
 
+            //Cursor.Hide();
+
             // Загрузить ресурсы, необходимые для данной сцены
             gd.rm.Clear();
 
@@ -133,9 +135,25 @@ namespace GameEngineStage6.Scenes
             */
         }
 
-        public override void Render()
+        public override void Render(Graphics g)
         {
-            base.Render();
+            base.Render(g);
+
+            // TODO: здесь должен быть вывод того, что виидит камера
+            gd.camera.Render();
+
+            // Цикл отображения всех объектов на всех уровнях
+            // Цикл по уровням (пока 3 уровня)
+            for (int i = 0; i < 3; i++)
+            {
+                foreach (Entity ent in gd.world.objects)
+                {
+                    if (ent.GetLayer() == i)
+                    {
+                        ent.Render(g);
+                    }
+                }
+            }
         }
 
         public override void Update(int delta)

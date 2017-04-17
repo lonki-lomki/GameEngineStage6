@@ -40,6 +40,8 @@ namespace GameEngineStage6.Core
 
         public HashSet<Keys> PressedKeys = new HashSet<Keys>();
 
+        public Bitmap worldImage;   // Буфер для отображения мира (общая карта, из которой камера будет отображать некоторую часть)
+
 
         /////////////////////////////////////////////////////////
 
@@ -52,6 +54,8 @@ namespace GameEngineStage6.Core
         public SpriteSheet ss;
 
         public List<int> canMove = new List<int>(); // Массив проходимости тайлов - заносятся индексы проходимых тайлов
+
+        public Camera camera;
 
         public Player player;
 

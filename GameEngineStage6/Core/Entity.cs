@@ -630,6 +630,15 @@ namespace GameEngineStage6.Core
         /// <param name="g">графический контекст</param>
         virtual public void Render(Graphics g)
         {
+            // !!! WARNING !!!
+            // Для данной игры объекты будут выводиться не на экран, а в буфферное изображение
+            Graphics gg = Graphics.FromImage(gd.worldImage);
+            // !!! WARNING !!!
+
+            // !!! WARNING !!!
+            // Для этой игры отображение объекта выполняется по координатам его центра
+            // !!! WARNING !!!
+
             if (img != null)
             {
                 // Проверить необходимость поворота изображения
@@ -644,19 +653,19 @@ namespace GameEngineStage6.Core
                         graphics.TranslateTransform(-(float)img.Width / 2, -(float)img.Height / 2);
                         graphics.DrawImage(img, 0.0f, 0.0f, img.Width, img.Height);
                     }
-                    g.DrawImage(returnBitmap, GetPosition().X, GetPosition().Y, GetSize().Width, GetSize().Height);
+                    gg.DrawImage(returnBitmap, GetPosition().X - GetSize().Width / 2, GetPosition().Y - GetSize().Height / 2, GetSize().Width, GetSize().Height);
                 }
                 else
                 {
                     // Вывод изображения на экран без поворота
-                    g.DrawImage(img, GetPosition().X, GetPosition().Y, GetSize().Width, GetSize().Height);
+                    gg.DrawImage(img, GetPosition().X - GetSize().Width / 2, GetPosition().Y - GetSize().Height / 2, GetSize().Width, GetSize().Height);
                 }
             } // if image not null
 
             // Вывести границы коллайдера
             if (cldr != null)
             {
-                cldr.Render(g);
+                cldr.Render(gg);
             }
         }
 

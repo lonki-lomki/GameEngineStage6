@@ -211,57 +211,9 @@ namespace GameEngineStage6
                 g.DrawImage(gd.backgroundImage, 0.0f, 0.0f);
             }
 
-            /*
-                        if (gd.currentGameState == GameData.GameState.GameWin)
-                        {
-                            g.DrawString("WIN!", new Font("Arial", 30), Brushes.Green, 350.0f, 250.0f);
-                            //g.DrawString("Скорость по Y: " + gd.player.getVelocity().Y, new Font("Arial", 12), Brushes.Green, 300.0f, 300.0f);
-                            return;
-                        }
-
-                        if (gd.currentGameState == GameData.GameState.GameOver)
-                        {
-                            g.DrawString("GAME OVER!", new Font("Arial", 30), Brushes.Red, 270.0f, 250.0f);
-                            return;
-                        }
-            */
-
-            //var res = state.DoString("return _VERSION")[0];
-            //g.DrawString((String)res, new Font("Arial", 30), Brushes.Green, 350.0f, 250.0f);
-
-            // Цикл отображения всех объектов на всех уровнях
-            // TODO: перенести в отдельный метод класса World
-            // Цикл по уровням (пока 3 уровня)
-            for (int i = 0; i < 3; i++)
-            {
-                foreach (Entity ent in gd.world.objects)
-                {
-                    if (ent.GetLayer() == i)
-                    {
-                        ent.Render(g);
-                    }
-                }
-            }
-
-            //gd.astar.drawPath(g, gd.aStarPath);
-
-            // TODO: тестирование анимации
-            //////anim.render(g, 600, 100);
-
-            // Вывод текстовой информации
-            //g.DrawString("Тяга: " + gd.player.getEngPower(), new Font("Arial", 12), Brushes.Black, 20.0f, 10.0f);
-            //g.DrawString("Скорость по Х: " + gd.player.getVelocity().X, new Font("Arial", 12), Brushes.Black, 20.0f, 30.0f);
-            //g.DrawString("Скорость по Y: " + gd.player.getVelocity().Y, new Font("Arial", 12), Brushes.Black, 20.0f, 50.0f);
-
-            // Для отладки - вывести два точечных коллайдера
-            /*
-            PointF pos = gd.player.getPosition();
-            Vector v = gd.pc1.rotate(gd.player.getAngle()-90.0f);
-            g.DrawEllipse(Pens.Green, pos.X + 20 + v.X, pos.Y + 20 + v.Y, 2, 2);
-            v = gd.pc2.rotate(gd.player.getAngle()-90.0f);
-            g.DrawEllipse(Pens.Green, pos.X + 20 + v.X, pos.Y + 20 + v.Y, 2, 2);
-            */
-
+            // Вызвать метод отображения текущей сцены
+            gd.curScene.Render(g);
+            
         }
 
         ///////////////////////////////////////////////////////////////////////
