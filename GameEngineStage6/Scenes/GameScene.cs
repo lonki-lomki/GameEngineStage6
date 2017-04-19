@@ -12,7 +12,7 @@ namespace GameEngineStage6.Scenes
     public class GameScene : Scene
     {
 
-        TiledMapObject tmo;
+        //public TiledMapObject tmo;
 
         public GameScene(GameData.GameState ID, GameData gd) : base(ID, gd)
         {
@@ -68,14 +68,14 @@ namespace GameEngineStage6.Scenes
             }
 
             // Создать объект для отображения карты
-            tmo = new TiledMapObject("TiledMapObject", gd, gd.map);
+            gd.tmo = new TiledMapObject("TiledMapObject", gd, gd.map);
             // Координаты игрового поля на экране
-            tmo.SetPosition(CONFIG.START_X, CONFIG.START_Y);
+            gd.tmo.SetPosition(CONFIG.START_X, CONFIG.START_Y);
             // Другие параметры
-            tmo.SetLayer(1);
+            gd.tmo.SetLayer(1);
 
             // Добавить объект на сцену
-            objects.Add(tmo);
+            objects.Add(gd.tmo);
 
             // Загрузить спрайт игрока
             gd.rm.AddElementAsImage("Player1", @"Resources\player.png");
@@ -140,20 +140,8 @@ namespace GameEngineStage6.Scenes
             base.Render(g);
 
             // TODO: здесь должен быть вывод того, что виидит камера
-            gd.camera.Render();
-
-            // Цикл отображения всех объектов на всех уровнях
-            // Цикл по уровням (пока 3 уровня)
-            for (int i = 0; i < 3; i++)
-            {
-                foreach (Entity ent in gd.world.objects)
-                {
-                    if (ent.GetLayer() == i)
-                    {
-                        ent.Render(g);
-                    }
-                }
-            }
+            gd.camera.Render(g);
+            
         }
 
         public override void Update(int delta)
@@ -189,8 +177,8 @@ namespace GameEngineStage6.Scenes
             gd.player.SetVelocity(velocity.X, velocity.Y);
 
             // Сдвинуть камеру, чтобы ГГ был по центру экрана
-            Rectangle rect = tmo.ViewPort;
-            tmo.ViewPort = new Rectangle((int)gd.player.GetPosition().X - rect.Width / 2 - CONFIG.START_X, (int)gd.player.GetPosition().Y - rect.Height / 2 - CONFIG.START_Y, rect.Width, rect.Height);
+            Rectangle rect = gd.tmo.ViewPort;
+            gd.tmo.ViewPort = new Rectangle((int)gd.player.GetPosition().X - rect.Width / 2 - CONFIG.START_X, (int)gd.player.GetPosition().Y - rect.Height / 2 - CONFIG.START_Y, rect.Width, rect.Height);
 
         }
     }

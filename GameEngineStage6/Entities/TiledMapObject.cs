@@ -17,7 +17,7 @@ namespace GameEngineStage6.Entities
         /// </summary>
         private Rectangle viewPort = new Rectangle(0, 0, CONFIG.VIEWPORT_WIDTH, CONFIG.VIEWPORT_HEIGHT);
 
-        private Bitmap image;
+        public Bitmap image;
 
         public TiledMapObject() : base()
         {
@@ -58,10 +58,10 @@ namespace GameEngineStage6.Entities
 
             // TODO: перенести в новый класс - Камера
             // Вывести часть игрового поля, на которую указывает viewPort
-            g.DrawImage(gd.worldImage, new Rectangle(CONFIG.START_X, CONFIG.START_Y, viewPort.Width, viewPort.Height), viewPort, GraphicsUnit.Pixel);
+            //g.DrawImage(gd.worldImage, new Rectangle(CONFIG.START_X, CONFIG.START_Y, viewPort.Width, viewPort.Height), viewPort, GraphicsUnit.Pixel);
 
             // Нарисовать границы области видимости игрового поля
-            g.DrawRectangle(Pens.LightGreen, CONFIG.START_X, CONFIG.START_Y, viewPort.Width, viewPort.Height);
+            //g.DrawRectangle(Pens.LightGreen, CONFIG.START_X, CONFIG.START_Y, viewPort.Width, viewPort.Height);
 
         }
 

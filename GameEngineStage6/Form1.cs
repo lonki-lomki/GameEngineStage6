@@ -81,6 +81,9 @@ namespace GameEngineStage6
             // Инициализация менеджера ресурсов
             gd.rm = ResourceManager.Instance;
 
+            // Создание и настройка камеры
+            gd.camera = new Camera(new Rectangle(CONFIG.START_X, CONFIG.START_Y, CONFIG.VIEWPORT_WIDTH, CONFIG.VIEWPORT_HEIGHT));
+
             // Создать стартовую сцену игры
             GameScene gs = new GameScene(GameData.GameState.Level, gd);
             //MainMenuScene scene = new MainMenuScene(GameData.GameState.MainMenu, gd);

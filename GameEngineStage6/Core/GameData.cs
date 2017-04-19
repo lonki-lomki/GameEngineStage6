@@ -1,4 +1,5 @@
-﻿using GameEngineStage6.Utils;
+﻿using GameEngineStage6.Entities;
+using GameEngineStage6.Utils;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -41,6 +42,8 @@ namespace GameEngineStage6.Core
         public HashSet<Keys> PressedKeys = new HashSet<Keys>();
 
         public Bitmap worldImage;   // Буфер для отображения мира (общая карта, из которой камера будет отображать некоторую часть)
+
+        public TiledMapObject tmo;
 
 
         /////////////////////////////////////////////////////////
