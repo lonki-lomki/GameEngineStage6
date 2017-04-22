@@ -13,6 +13,10 @@ namespace GameEngineStage6
     {
 
         // TODO: создать два спрайта для ГГ (нижняя часть и верхняя часть)
+        // TODO: PixelFormat.Format32bppPArgb format is the fastest
+        // TODO: DrawImageUnscaled might work faster than DrawImage
+        // TODO: set Graphics.CompositingMode to CompositingMode.SourceCopy before calling DrawImage()
+        // TODO: Make sure Graphics.InterpolationMode isn't set to something like InterpolationMode.HighQualityBicubic. Using NearestNeighbor will be the fastest
 
         private Timer timer = new Timer();
 
@@ -46,6 +50,9 @@ namespace GameEngineStage6
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
             */
+
+            // Включить двойную буфферизацию графики
+            DoubleBuffered = true;
 
             Logger log = new Logger("Log.txt");
 

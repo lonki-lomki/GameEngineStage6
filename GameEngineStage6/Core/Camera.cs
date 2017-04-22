@@ -1,6 +1,7 @@
 ﻿
 
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace GameEngineStage6.Core
 {
@@ -39,25 +40,34 @@ namespace GameEngineStage6.Core
             g.DrawImage(gd.tmo.image, new Rectangle(geometry.X, geometry.Y, geometry.Width, geometry.Height), new Rectangle(pointOfView, new Size(CONFIG.VIEWPORT_WIDTH, CONFIG.VIEWPORT_HEIGHT)), GraphicsUnit.Pixel);
 
 
-            // Нарисовать границы области видимости игрового поля
-            g.DrawRectangle(Pens.LightGreen, geometry.X, geometry.Y, geometry.Width, geometry.Height);
+            // Лист для отрисовки объектов
+            Graphics gg = Graphics.FromImage(gd.worldImage);
+            gg.CompositingMode = CompositingMode.SourceCopy;
+            gg.InterpolationMode = InterpolationMode.NearestNeighbor;
+            // Очистить прозрачным цветом
+            gg.Clear(Color.Transparent);
 
-            ...
+            //...Нарисовать объекты в мировых координатах и вывести часть, попадающую в область видимости камеры
 
             // Цикл отображения всех объектов на всех уровнях
             // Цикл по уровням (пока 3 уровня)
-            /*
             for (int i = 0; i < 3; i++)
             {
                 foreach (Entity ent in gd.world.objects)
                 {
                     if (ent.GetLayer() == i)
                     {
-                        ent.Render(g);
+                        ent.Render(gg);
                     }
                 }
             }
-            */
+
+            // Вывести часть слоя с объектами, которая попадает в поле зрения камеры
+            g.DrawImage(gd.worldImage, new Rectangle(geometry.X, geometry.Y, geometry.Width, geometry.Height), new Rectangle(pointOfView, new Size(CONFIG.VIEWPORT_WIDTH, CONFIG.VIEWPORT_HEIGHT)), GraphicsUnit.Pixel);
+
+            // Нарисовать границы области видимости игрового поля
+            g.DrawRectangle(Pens.LightGreen, geometry.X, geometry.Y, geometry.Width, geometry.Height);
+
         }
     }
 }

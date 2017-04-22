@@ -2,6 +2,7 @@
 using GameEngineStage6.Utils;
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace GameEngineStage6.Entities
 {
@@ -34,8 +35,8 @@ namespace GameEngineStage6.Entities
         public TiledMapObject(String id, GameData gd, Map map) : base(id, gd)
         {
             this.map = map;
-            image = new Bitmap(map.Layers["Layer 1"].Width * CONFIG.TILE_SIZE, map.Layers["Layer 1"].Height * CONFIG.TILE_SIZE);
-            gd.worldImage = new Bitmap(map.Layers["Layer 1"].Width * CONFIG.TILE_SIZE, map.Layers["Layer 1"].Height * CONFIG.TILE_SIZE);
+            image = new Bitmap(map.Layers["Layer 1"].Width * CONFIG.TILE_SIZE, map.Layers["Layer 1"].Height * CONFIG.TILE_SIZE, PixelFormat.Format32bppPArgb);
+            gd.worldImage = new Bitmap(map.Layers["Layer 1"].Width * CONFIG.TILE_SIZE, map.Layers["Layer 1"].Height * CONFIG.TILE_SIZE, PixelFormat.Format32bppPArgb);
 
             Graphics gg = Graphics.FromImage(image);
 
