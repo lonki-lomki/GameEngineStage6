@@ -655,6 +655,8 @@ namespace GameEngineStage6.Core
                 {
                     // Вывод изображения на экран без поворота
                     g.DrawImage(img, GetPosition().X - GetSize().Width / 2, GetPosition().Y - GetSize().Height / 2, GetSize().Width, GetSize().Height);
+                    // Для корректного отображения этой функцией необходимо, чтобы DPI изображения совпадал с DPI картинки!!!
+//                    g.DrawImageUnscaled(img, (int)(GetPosition().X - GetSize().Width / 2), (int)(GetPosition().Y - GetSize().Height / 2));
                 }
             } // if image not null
 
